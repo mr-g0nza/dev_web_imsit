@@ -12,6 +12,9 @@ services:
     environment:
       - NODE_ENV=development
       - GENKIT_ENV=dev
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
   genkit:
     build: .
@@ -25,7 +28,6 @@ services:
     environment:
       - NODE_ENV=development
       - GENKIT_ENV=dev
-      # Убедитесь, что у вас есть файл .env с вашим GEMINI_API_KEY
-      # или раскомментируйте и установите его здесь
-      # - GEMINI_API_KEY=your_gemini_api_key
-
+    dns:
+          - 8.8.8.8
+          - 8.8.4.4

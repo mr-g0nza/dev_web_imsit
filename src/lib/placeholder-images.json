@@ -3,7 +3,7 @@
     {
       "id": "wheel1",
       "description": "A stylish silver alloy wheel with a dynamic multi-spoke design.",
-      "imageUrl": "https://images.unsplash.com/photo-1594028558497-a981b6559f91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhbGxveSUyMHdoZWVsfGVufDB8fHx8MTc2MzkwNzkzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1591117728047-2dc00780492c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhbGxveSUyMHdoZWVsfGVufDB8fHx8MTc2MzkwNzkzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "alloy wheel"
     },
     {
@@ -15,13 +15,13 @@
     {
       "id": "wheel3",
       "description": "A classic chrome wheel with intricate detailing.",
-      "imageUrl": "https://images.unsplash.com/photo-1713096528010-e586cc4616fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaHJvbWUlMjB3aGVlbHxlbnwwfHx8fDE3NjQwMTM3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1741085119780-b132011dddb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaHJvbWUlMjB3aGVlbHxlbnwwfHx8fDE3NjQwMTM3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "chrome wheel"
     },
     {
       "id": "wheel4",
       "description": "A rugged steel wheel, perfect for off-road vehicles.",
-      "imageUrl": "https://images.unsplash.com/photo-1659268206764-3650b02a6840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdGVlbCUyMHdoZWVsfGVufDB8fHx8MTc2NDAxMzcwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1601896203948-aed25374b756?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3RlZWwlMjB3aGVlbHxlbnwwfHx8fDE3NjQwMTM3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "steel wheel"
     },
     {
@@ -33,19 +33,19 @@
     {
       "id": "wheel6",
       "description": "A sleek dark grey wheel with a mesh design.",
-      "imageUrl": "https://images.unsplash.com/photo-1609363764410-d6ac51d8ef03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxncmV5JTIwd2hlZWx8ZW58MHx8fHwxNzY0MDEzNzA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1590320633775-c3629859e7d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxncmV5JTIwd2hlZWx8ZW58MHx8fHwxNzY0MDEzNzA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "grey wheel"
     },
     {
       "id": "wheel7",
       "description": "A white rally-style wheel.",
-      "imageUrl": "https://images.unsplash.com/photo-1725404300737-71eb1a7edda7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMHdoZWVsfGVufDB8fHx8MTc2NDAxMzcwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1692637839440-91beb609aa4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3aGl0ZSUyMHdoZWVsfGVufDB8fHx8MTc2NDAxMzcwNnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "white wheel"
     },
     {
       "id": "wheel8",
       "description": "A futuristic two-tone alloy wheel.",
-      "imageUrl": "https://images.unsplash.com/photo-1688885387704-67df0a0c4be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YWxsb3klMjB3aGVlbHxlbnwwfHx8fDE3NjM5MDc5MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1594028558497-a981b6559f91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhbGxveSUyMHdoZWVsfGVufDB8fHx8MTc2MzkwNzkzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "alloy wheel"
     }
   ]
