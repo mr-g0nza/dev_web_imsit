@@ -5,6 +5,7 @@ export type Wheel = {
   size: number;
   type: 'Легкосплавные' | 'Стальные' | 'Хром';
   price: number;
+  originalPrice?: number;
   imageUrl: string;
   imageHint: string;
 };

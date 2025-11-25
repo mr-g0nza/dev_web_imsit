@@ -14,9 +14,13 @@ type ProductCardProps = {
 
 export function ProductCard({ wheel }: ProductCardProps) {
   const { addToCart } = useCart();
+  const onSale = wheel.originalPrice && wheel.originalPrice > wheel.price;
 
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
+       {onSale && (
+        <Badge className="absolute top-2 right-2 z-10" variant="destructive">Скидка!</Badge>
+      )}
       <CardHeader className="p-0">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image
@@ -41,7 +45,10 @@ export function ProductCard({ wheel }: ProductCardProps) {
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-between p-4 pt-0">
-        <p className="text-xl font-bold text-primary">${wheel.price}</p>
+        <div className="flex items-baseline gap-2">
+            <p className={`text-xl font-bold ${onSale ? 'text-destructive' : 'text-primary'}`}>${wheel.price}</p>
+            {onSale && <p className="text-sm text-muted-foreground line-through">${wheel.originalPrice}</p>}
+        </div>
         <Button onClick={() => addToCart(wheel)} size="sm">
           <ShoppingCart className="mr-2 h-4 w-4" />
           В корзину

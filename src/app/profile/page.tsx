@@ -1,23 +1,22 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Package, User } from 'lucide-react';
+import { Package, User, LogOut } from 'lucide-react';
 import type { Order } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
+import { useUser, useAuth } from '@/firebase';
+import { signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import { Skeleton } from '@/components/ui/skeleton';
 
-// Mock data, in a real app this would come from an API/session
-const isAuthenticated = true; 
-const user = {
-  name: 'Алекс Райдер',
-  email: 'alex.ryder@example.com',
-  avatarUrl: 'https://picsum.photos/seed/user1/100/100',
-};
+// Mock data
 const orders: Order[] = [
-  { id: 'ORD123', date: '2023-10-26', total: 500, status: 'Shipped', items: [{ wheel: {id: 'w1', name: 'Vortex R1', brand: 'Momentum', size: 18, type: 'Alloy', price: 250, imageUrl: 'https://picsum.photos/seed/wheel1/400/400', imageHint: 'alloy wheel'}, quantity: 2}] },
-  { id: 'ORD124', date: '2023-11-15', total: 1100, status: 'Processing', items: [{ wheel: { id: 'w8', name: 'Velocity V2', brand: 'Velocity', size: 19, type: 'Chrome', price: 550, imageUrl: 'https://picsum.photos/seed/wheel8/400/400', imageHint: 'alloy wheel' }, quantity: 2}]},
-  { id: 'ORD125', date: '2023-09-02', total: 360, status: 'Delivered', items: [{ wheel: { id: 'w7', name: 'Stark Classic', brand: 'Stark', size: 16, type: 'Steel', price: 180, imageUrl: 'https://picsum.photos/seed/wheel7/400/400', imageHint: 'white wheel' }, quantity: 2}]},
+  { id: 'ORD123', date: '2023-10-26', total: 500, status: 'Shipped', items: [{ wheel: {id: 'w1', name: 'Vortex R1', brand: 'Momentum', size: 18, type: 'Легкосплавные', price: 250, originalPrice: 250, imageUrl: 'https://picsum.photos/seed/wheel1/400/400', imageHint: 'alloy wheel'}, quantity: 2}] },
+  { id: 'ORD124', date: '2023-11-15', total: 1100, status: 'Processing', items: [{ wheel: { id: 'w8', name: 'Velocity V2', brand: 'Velocity', size: 19, type: 'Хром', price: 550, originalPrice: 550, imageUrl: 'https://picsum.photos/seed/wheel8/400/400', imageHint: 'alloy wheel' }, quantity: 2}]},
+  { id: 'ORD125', date: '2023-09-02', total: 360, status: 'Delivered', items: [{ wheel: { id: 'w7', name: 'Stark Classic', brand: 'Stark', size: 16, type: 'Стальные', price: 180, originalPrice: 180, imageUrl: 'https://picsum.photos/seed/wheel7/400/400', imageHint: 'white wheel' }, quantity: 2}]},
 ];
 
 const OrderHistory = () => {
@@ -46,20 +45,24 @@ const OrderHistory = () => {
           <CardDescription>Просмотрите ваши прошлые заказы.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {orders.map(order => (
-              <div key={order.id} className="flex justify-between items-center p-3 rounded-lg border">
-                <div>
-                  <p className="font-semibold">{order.id}</p>
-                  <p className="text-sm text-muted-foreground">{order.date}</p>
+          {orders.length > 0 ? (
+            <div className="space-y-4">
+              {orders.map(order => (
+                <div key={order.id} className="flex justify-between items-center p-3 rounded-lg border">
+                  <div>
+                    <p className="font-semibold">{order.id}</p>
+                    <p className="text-sm text-muted-foreground">{order.date}</p>
+                  </div>
+                  <div className='text-right'>
+                    <Badge variant={getStatusVariant(order.status)}>{getStatusText(order.status)}</Badge>
+                    <p className="font-semibold mt-1">${order.total.toFixed(2)}</p>
+                  </div>
                 </div>
-                <div className='text-right'>
-                  <Badge variant={getStatusVariant(order.status)}>{getStatusText(order.status)}</Badge>
-                  <p className="font-semibold mt-1">${order.total.toFixed(2)}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground text-center">У вас еще нет заказов.</p>
+          )}
         </CardContent>
       </Card>
     )
@@ -82,8 +85,46 @@ const NotAuthenticated = () => (
     </Card>
 );
 
+const ProfileSkeleton = () => (
+  <div className="space-y-8">
+    <Card>
+      <CardHeader>
+        <div className="flex items-center gap-4">
+          <Skeleton className="h-16 w-16 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-48" />
+            <Skeleton className="h-4 w-64" />
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <Skeleton className="h-10 w-36" />
+      </CardContent>
+    </Card>
+  </div>
+);
+
 export default function ProfilePage() {
-  if (!isAuthenticated) {
+  const { user, loading } = useUser();
+  const auth = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    if (auth) {
+      await signOut(auth);
+      router.push('/');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <ProfileSkeleton />
+      </div>
+    );
+  }
+
+  if (!user) {
     return (
         <div className="container mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 flex items-center justify-center min-h-[60vh]">
             <NotAuthenticated />
@@ -98,13 +139,17 @@ export default function ProfilePage() {
           <CardHeader>
             <div className="flex items-center gap-4">
               <Avatar className="h-16 w-16">
-                <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="person portrait" />
-                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || 'User'} data-ai-hint="person portrait" />}
+                <AvatarFallback>{user.displayName ? user.displayName.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U')}</AvatarFallback>
               </Avatar>
               <div>
-                <CardTitle className="text-2xl">{user.name}</CardTitle>
+                <CardTitle className="text-2xl">{user.displayName || 'Пользователь'}</CardTitle>
                 <CardDescription>{user.email}</CardDescription>
               </div>
+              <Button variant="ghost" size="icon" className="ml-auto" onClick={handleLogout}>
+                <LogOut />
+                <span className="sr-only">Выйти</span>
+              </Button>
             </div>
           </CardHeader>
           <CardContent>
